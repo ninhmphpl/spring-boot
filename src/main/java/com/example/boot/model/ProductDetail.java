@@ -21,8 +21,6 @@ public class ProductDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Transient
-    private List<MultipartFile> imgFile;
     @JsonIgnore
     private String img;
     @ManyToMany
