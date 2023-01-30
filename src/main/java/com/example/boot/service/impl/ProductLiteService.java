@@ -4,10 +4,11 @@ import com.example.boot.model.ProductLite;
 import com.example.boot.repository.ProductLiteRepository;
 import com.example.boot.service.IProductLiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ProductLiteService implements IProductLiteService {
 
     @Autowired

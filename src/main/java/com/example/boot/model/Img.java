@@ -8,17 +8,14 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product")
+@Table(name = "img")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class ProductLite {
+public class Img {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String img;
-    private Double price;
-    private Integer sold;
+    private String url;
 }
