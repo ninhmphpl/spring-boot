@@ -1,6 +1,7 @@
 package com.example.boot.controller;
 
 import com.example.boot.model.Test;
+import com.example.boot.model.TestFileOnObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,26 @@ public class UploadFileController {
         System.out.println(path.toString());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PostMapping("/2")
+    public ResponseEntity<?>uploadFile2(@RequestPart(value = "object") Test test,
+                                        @RequestPart(value = "files") List<MultipartFile> multipartFiles) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/3")
+    public ResponseEntity<?>uploadFile3(@RequestPart(value = "object")TestFileOnObject object) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/4")
+    public ResponseEntity<?>uploadFile4(@RequestPart(value = "files") List<MultipartFile> multipartFiles) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+
     @GetMapping
-    public ResponseEntity<?> get (@RequestBody Test a){
-        return new ResponseEntity<>(a, HttpStatus.OK);
+    public ResponseEntity<?> get (){
+        return new ResponseEntity<>("hello", HttpStatus.OK);
     }
 }
