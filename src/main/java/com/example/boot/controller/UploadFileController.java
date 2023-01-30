@@ -36,7 +36,7 @@ public class UploadFileController {
             }
             path.add(displayLink + fileName);
         }
-        System.out.println(path.toString());
+        System.out.println(path);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PostMapping("/2")
