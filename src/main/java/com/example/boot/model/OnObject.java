@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TestFileOnObject {
+public class OnObject {
     private List<MultipartFile> multipartFiles;
     private String name;
     private Long id;
