@@ -17,5 +17,4 @@ public class TestFileOnObject {
     private List<MultipartFile> multipartFiles;
     private String name;
     private Long id;
-
 }
