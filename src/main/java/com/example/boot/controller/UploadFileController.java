@@ -21,8 +21,8 @@ public class UploadFileController {
     @Value("${upload.path}")
     private String link;
 
-    @Value("${display.path}")
-    private String displayLink;
+    // @Value("${display.path}")
+    // private String displayLink;
 
     @PostMapping()
     public ResponseEntity<?> uploadFile(@RequestPart(value = "files") List<MultipartFile> multipartFiles){
@@ -34,7 +34,7 @@ public class UploadFileController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            path.add(displayLink + fileName);
+            // path.add(displayLink + fileName);
         }
         System.out.println(path);
         return new ResponseEntity<>(HttpStatus.OK);
