@@ -1,7 +1,7 @@
 package com.example.boot.controller;
 
 import com.example.boot.model.Test;
-import com.example.boot.model.TestFileOnObject;
+import com.example.boot.model.OnObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +46,7 @@ public class UploadFileController {
     }
 
     @PostMapping("/3")
-    public ResponseEntity<?>uploadFile3(@RequestPart(value = "object")TestFileOnObject object) {
+    public ResponseEntity<?>uploadFile3(@RequestPart(value = "object")OnObject object) {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
