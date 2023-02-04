@@ -1,9 +1,12 @@
 package com.example.boot.service.impl;
 
+import com.example.boot.model.ProductDetail;
 import com.example.boot.model.ProductLite;
 import com.example.boot.repository.ProductLiteRepository;
 import com.example.boot.service.IProductLiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,4 +36,10 @@ public class ProductLiteService implements IProductLiteService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public Page<ProductLite> findAllPage(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
 }

@@ -13,6 +13,7 @@ public class ProductDetailService implements IProductDetailService {
 
     @Autowired
     private ProductDetailRepository repository;
+
     @Override
     public List<ProductDetail> findAll() {
         return repository.findAll();

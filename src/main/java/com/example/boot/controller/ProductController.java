@@ -5,12 +5,18 @@ import com.example.boot.model.ProductLite;
 import com.example.boot.service.IProductDetailService;
 import com.example.boot.service.IProductLiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @RestController
 @CrossOrigin("*")
@@ -45,8 +51,11 @@ public class ProductController {
 
     }
 
-
-
-
+    @GetMapping("/lites/pages")
+    public ResponseEntity<?> findAllProductLitePage(@PageableDefault(value = 3)
+                                                        @SortDefault(sort = "id", direction = DESC) Pageable pageable){
+        Page<ProductLite> list = productLiteService.findAllPage(pageable);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
 }
