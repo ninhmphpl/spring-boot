@@ -25,12 +25,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     /**
      * Đây là nơi request được nhận là token sẽ được lấy ra
      * Từ đó kiểm tra tính  hợp lệ của tokent
-     *
-     * @param request
-     * @param response
-     * @param filterChain
-     * @throws ServletException
-     * @throws IOException
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request,

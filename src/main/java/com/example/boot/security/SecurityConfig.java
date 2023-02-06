@@ -42,6 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomAccessDeniedHandler();
     }
 
+    /**
+     * Mã hóa mật khẩu, kiểu mã hóa là BCrypt với strength là 10;
+     * @return : một chuỗi string mã hóa từ mật khẩu
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
@@ -52,6 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * Đây là nơi config của service bao gồm:
+     * .antMatchers( "/api/login").permitAll() : đây là URL nơi tất các request có thẻ truy cập mà không bắt buộc thông qua service
+     * .antMatchers( "/customers**","/api/hello").hasAnyRole("USER") : còn những URL sẽ chỉ có thể truy cập thông qua role tương ứng
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().ignoringAntMatchers("/**");
