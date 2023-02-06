@@ -13,6 +13,11 @@ public class JwtService {
     private static final String SECRET_KEY = "123456789987654321123456789987654321123456789";
     private static final long EXPIRE_TIME = 86400000000L;
 
+    /**
+     * Tạo mã token
+     * @param authentication
+     * @return mã token
+     */
     public String generateTokenLogin(Authentication authentication) {
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
 
@@ -24,6 +29,11 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * Kiểm tra tính hợp lệ của token
+     * @param authToken : token
+     * @return
+     */
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(authToken);
@@ -40,6 +50,11 @@ public class JwtService {
         return false;
     }
 
+    /**
+     * Lấy username từ 1 token
+     * @param token : là 1 token
+     * @return :
+     */
     public String getUserNameFromJwtToken(String token) {
         String userName = Jwts.parser()
                 .setSigningKey(SECRET_KEY)

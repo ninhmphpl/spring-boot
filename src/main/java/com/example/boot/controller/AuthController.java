@@ -3,7 +3,7 @@ package com.example.boot.controller;
 import com.example.boot.model.User;
 import com.example.boot.security.jwt.JwtResponse;
 import com.example.boot.security.jwt.JwtService;
-import com.example.boot.service.UserService;
+import com.example.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class AuthController {
     private JwtService jwtService;
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {

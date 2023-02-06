@@ -1,21 +1,21 @@
-package com.example.boot.service;
+package com.example.boot.service.impl;
 
 import com.example.boot.model.User;
 import com.example.boot.model.UserPrinciple;
 import com.example.boot.repository.IUserRepository;
+import com.example.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
-
+    @Override
     public Optional<User> findByUsername(String username) {
         return iUserRepository.findByUsername(username);
     }
@@ -26,6 +26,6 @@ public class UserService implements UserDetailsService {
         if (!userOptional.isPresent()) {
             throw new UsernameNotFoundException(username);
         }
-        return UserPrinciple.build(userOptional.get());
+        return new UserPrinciple(userOptional.get());
     }
 }

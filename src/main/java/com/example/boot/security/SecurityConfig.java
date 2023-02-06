@@ -1,6 +1,6 @@
 package com.example.boot.security;
 
-import com.example.boot.service.UserService;
+import com.example.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {

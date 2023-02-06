@@ -1,7 +1,7 @@
 package com.example.boot.security;
 
 import com.example.boot.security.jwt.JwtService;
-import com.example.boot.service.UserService;
+import com.example.boot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,18 +20,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtService jwtService;
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
+    /**
+     * Đây là nơi request được nhận là token sẽ được lấy ra
+     * Từ đó kiểm tra tính  hợp lệ của tokent
+     *
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
+            // lấy token
             String jwt = getJwtFromRequest(request);
             if (jwt != null && jwtService.validateJwtToken(jwt)) {
+                // lây username từ token
                 String username = jwtService.getUserNameFromJwtToken(jwt);
-
+                // lấy ra 1 đối tượng UserDetails từ username thông qua service
                 UserDetails userDetails = userService.loadUserByUsername(username);
+
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
