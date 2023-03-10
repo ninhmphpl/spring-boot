@@ -30,7 +30,7 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) throws Exception {
         System.out.println(event.getUser());
-        String token = getToken(event);
+//        String token = getToken(event);
         logger.info("Received a new web socket connection");
     }
 
@@ -42,9 +42,10 @@ public class WebSocketEventListener {
                     (Message<?>) Objects.requireNonNull(headerAccessor.getHeader("simpConnectMessage")),
                     StompHeaderAccessor.class);
             if (stompHeaderAccessor != null) {
-                return stompHeaderAccessor.getNativeHeader("token").get(0);
-            }else throw new Exception();
-        }else throw new Exception();
+
+                    return Objects.requireNonNull(stompHeaderAccessor.getNativeHeader("token")).get(0);
+            }else throw new Exception("Stomp header is null");
+        }else throw new Exception("MessageHeaderAccessor is null");
     }
 
     @EventListener
