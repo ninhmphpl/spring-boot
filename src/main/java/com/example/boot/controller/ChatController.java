@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ChatController {
-
+    
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    public ChatMessage sendMessage(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+        String username = (String) headerAccessor.getSessionAttributes().get("username");
+        System.out.println(username);
         return chatMessage;
     }
 
